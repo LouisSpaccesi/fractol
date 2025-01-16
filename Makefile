@@ -1,22 +1,16 @@
-# Nom de l'exécutable
 NAME := fractol
 
-# Sources
-SRCS := fractol.c utils.c zoom.c
+SRCS := mandelbrot.c utils.c zoom.c
 
-# Objets
 OBJS := $(SRCS:.c=.o)
 
-# Compilation
 CC := cc 
 CFLAGS := -Wall -Wextra -Werror
 
-# MiniLibX
 MLX_DIR := minilibx-linux
 MLX_LIB := $(MLX_DIR)/libmlx_Linux.a
 MLX_FLAGS := -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
 
-# Règles
 all: $(NAME)
 
 $(NAME): $(OBJS)

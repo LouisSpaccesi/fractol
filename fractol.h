@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/16 19:28:10 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/17 00:01:02 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #define FRACTOL_H
 #include "mlx.h"
 #include "stdlib.h"
+#include <X11/keysym.h>
+#include <X11/X.h>
+#include <stdio.h>
+#include <string.h>
 
 #define WINDOW_WIDTH 720
 #define WINDOW_HEIGHT 520
@@ -47,8 +51,13 @@ typedef struct s_data
 	double		mouse_im;
 	double		mouse_re;
 	double		zoom;
+	int 		color;
 }	t_data;
 
-int ft_zoom(int button, int x, int y, t_data *data);
+int		ft_zoom(int button, int x, int y, t_data *data);
+void	img_pix_put(t_img *img, int x, int y, int color);
+int		handle_keypress(int keysym, t_data *data);
+int		handle_cross(t_data *data);
+
 
 #endif
