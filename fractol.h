@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/06 16:07:54 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:45:06 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ typedef struct s_data
 	double		re_max;
 	double		im_min;
 	double		im_max;
+	double		mouse_im;
+	double		mouse_re;
 	double		zoom;
-	double		left;
-	double		right;
-	double		offset_left;
-	double		offset_right;
 }	t_data;
 
 int ft_zoom(int button, int x, int y, t_data *data);

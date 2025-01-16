@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:11:02 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/06 16:08:29 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:27:17 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 #include <mlx.h>
 #include "math.h"
 #include "fractol.h"
-
-// double interpolate(double, start, double end, double interpolation)
-// {
-// 	return (start  + ((end - start) * interpolation));
-// }
-
-// void apply_zoom(t_img *e, double mouseRe, double mouse)
 
 int		ft_fractol(double c_re, double c_im)
 {
@@ -61,7 +54,8 @@ void	render_fractal(t_img *img, t_data *data)
 	int color;
 	double	c_re;
 	double c_im;
-
+	int iter;
+	
 	y = 0;
 	while(y < WINDOW_HEIGHT)
 	{
@@ -70,7 +64,7 @@ void	render_fractal(t_img *img, t_data *data)
 		{
 			c_re = ((x - WINDOW_WIDTH / 2.0) * data->zoom)* 4.0 / WINDOW_WIDTH;
 			c_im = ((y - WINDOW_HEIGHT / 2.0) * data->zoom) * 4.0 / WINDOW_HEIGHT;
-			int iter = ft_fractol(c_re, c_im);
+			iter = ft_fractol(c_re, c_im);
 			color = 0x000000;
 			if (iter < MAX_ITERATION)
 				color = 0x00FF00 + (iter * 600 / MAX_ITERATION) * 256;
@@ -89,12 +83,12 @@ int	handle_keypress(int keysym, t_data *data)
 		data->win_ptr = NULL;
 		exit(0);
 	}
-	if(keysym == XK_Left)
-	{
-		data->offset_left 
-	}
-	else if (keysym == XK_Right)
-		printf("OK");
+	// if(keysym == XK_Left)
+	// {
+	// 	data->offset_left;
+	// }
+	// else if (keysym == XK_Right)
+	// 	printf("OK");
 	return (0);
 }
 
@@ -138,13 +132,12 @@ int	main(void)
 	}
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+	// mlx_mouse_get_pos(data.win_ptr, ft_zoom, (int)data.mouse_x, (int)data.mouse_y);
 	mlx_hook(data.win_ptr, 17, 0, &handle_cross, &data);
 	mlx_mouse_hook(data.win_ptr, ft_zoom, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_loop(data.mlx_ptr);
-
-	printf("LE ZOOM %f", data.zoom);
 
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_display(data.mlx_ptr);
