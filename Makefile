@@ -1,6 +1,6 @@
 NAME := fractol
 
-SRCS := mandelbrot.c utils.c zoom.c
+SRCS := mandelbrot.c utils.c zoom.c julia.c
 
 OBJS := $(SRCS:.c=.o)
 
