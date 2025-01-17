@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 12:38:34 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:04:18 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int		ft_zoom(int button, int x, int y, t_data *data);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		handle_keypress(int keysym, t_data *data);
 int		handle_cross(t_data *data);
+int		julia(void);
+int		mandelbrot(void);
 
 
 #endif

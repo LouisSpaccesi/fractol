@@ -3,14 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 23:45:06 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 00:00:24 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:02:53 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static int	ft_isspace(char c)
+{
+	return ((c >= 9 && c <= 13) || c == ' ');
+}
+
+int	ft_atoi(const char *nptr)
+{
+	int		i;
+	int		sign;
+	int		result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (ft_isspace(*nptr))
+		nptr++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = (result * 10) + (nptr[i] - 48);
+		i++;
+	}
+	i++;
+	return (result * sign);
+}
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {

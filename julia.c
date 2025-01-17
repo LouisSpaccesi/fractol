@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:02:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 12:49:52 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:07:08 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 
-int	ft_fractol(double z_re, double z_im, double c_re, double c_im)
+int	ft_fractol_julia(double z_re, double z_im, double c_re, double c_im)
 {
 	double	z_re2;
 	double	z_im2;
@@ -31,7 +31,7 @@ int	ft_fractol(double z_re, double z_im, double c_re, double c_im)
 	return (iter);
 }
 
-void	render_julia(t_img *img, t_data *data)
+void	graph_julia(t_img *img, t_data *data)
 {
 	int		x;
 	int		y;
@@ -53,7 +53,7 @@ void	render_julia(t_img *img, t_data *data)
 				+ data->mouse_re;
 			z_im = (y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
 				+ data->mouse_im;
-			iter = ft_fractol(z_re, z_im, c_re, c_im);
+			iter = ft_fractol_julia(z_re, z_im, c_re, c_im);
 			data->color = 0x000000;
 			if (iter < MAX_ITERATION)
 				data->color = 0x0000FF + (iter * 600 / MAX_ITERATION) * 256;
@@ -64,12 +64,11 @@ void	render_julia(t_img *img, t_data *data)
 	}
 }
 
-
-int	render(t_data *data)
+int	render_julia(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	render_julia(&data->img, data);
+	graph_julia(&data->img, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
 		0);
 	return (0);
@@ -94,7 +93,7 @@ static int init_julia(t_data *data)
 	return (0);
 }
 
-int	main(void)
+int	julia(void)
 {
 	t_data	data;
 
@@ -106,7 +105,7 @@ int	main(void)
 	mlx_hook(data.win_ptr, 17, 0, &handle_cross, &data);
 	mlx_mouse_hook(data.win_ptr, ft_zoom, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
+	mlx_loop_hook(data.mlx_ptr, &render_julia, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_display(data.mlx_ptr);
