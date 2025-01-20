@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:02:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 15:07:08 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:00:17 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 
-int	ft_fractol_julia(double z_re, double z_im, double c_re, double c_im)
+int	ft_fractol_julia(double z_re, double z_im, double c_re, double c_im, t_data	*data)
 {
 	double	z_re2;
 	double	z_im2;
 	int		iter;
 	
 	iter = 0;
-	while (z_re * z_re + z_im * z_im <= 4 && iter < MAX_ITERATION)
+	while (z_re * z_re + z_im * z_im <= 4 && iter < data->iteration)
 	{
 		z_re2 = z_re * z_re - z_im * z_im + c_re;
 		z_im2 = 2 * z_re * z_im + c_im;
@@ -53,10 +53,10 @@ void	graph_julia(t_img *img, t_data *data)
 				+ data->mouse_re;
 			z_im = (y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
 				+ data->mouse_im;
-			iter = ft_fractol_julia(z_re, z_im, c_re, c_im);
+			iter = ft_fractol_julia(z_re, z_im, c_re, c_im, data);
 			data->color = 0x000000;
-			if (iter < MAX_ITERATION)
-				data->color = 0x0000FF + (iter * 600 / MAX_ITERATION) * 256;
+			if (iter < data->iteration)
+				data->color = data->rgb + (iter * 1000 / data->iteration) * data->change_color;
 			img_pix_put(img, x, y, data->color);
 			x++;
 		}
@@ -80,6 +80,9 @@ static int init_julia(t_data *data)
 	data->mouse_re = 0.0;
 	data->mouse_im = 0.0;
 	data->mlx_ptr = mlx_init();
+	data->iteration = 50;
+	data->change_color = 256;
+	data->rgb = 0x0000FF;
 	if (data->mlx_ptr == NULL)
 		return (1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,

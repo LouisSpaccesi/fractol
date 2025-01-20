@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 23:45:06 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 15:02:53 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/19 12:58:52 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,21 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+int return_fractal(t_data *data)
+{
+	if (data->fractal_type == 1)
+	{
+		render_mandelbrot(data);
+		return (1);
+	}
+	if (data->fractal_type == 2)
+	{
+		render_julia(data);
+		return (1);
+	}
+	return (0);
+}
+
 int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
@@ -61,6 +76,32 @@ int	handle_keypress(int keysym, t_data *data)
 		data->win_ptr = NULL;
 		exit(0);
 	}
+	if(keysym == XK_Up)
+	{
+		if(data->iteration < 300)
+			data->iteration++;	
+	}
+	if(keysym == XK_Down)
+	{
+		if(data->iteration > 0)
+			data->iteration--;
+	}
+	if (keysym == XK_Left)
+		data->change_color++;
+	if (keysym == XK_Right)
+		data->change_color--;
+	if(keysym == XK_space)
+	{
+		if (data->rgb == 0x0000FF)
+            data->rgb = 0x00FF00;   
+   		else if (data->rgb == 0x00FF00)  
+            data->rgb = 0xFF0000;  
+        else if (data->rgb == 0xFF0000) 
+            data->rgb = 0xFFFF00;  
+        else if (data->rgb == 0xFFFF00) 
+            data->rgb = 0x0000FF;
+	}
+	return_fractal(data);
 	return (0);
 }
 

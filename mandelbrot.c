@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:11:02 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 15:07:23 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:29:37 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <math.h>
 
-int	ft_fractol_mandelbrot(double c_re, double c_im)
+int	ft_fractol_mandelbrot(double c_re, double c_im, t_data *data)
 {
 	double	z_re;
 	double	z_im;
@@ -24,7 +24,7 @@ int	ft_fractol_mandelbrot(double c_re, double c_im)
 	z_re = 0;
 	z_im = 0;
 	iter = 0;
-	while (z_re * z_re + z_im * z_im <= 4 && iter < MAX_ITERATION)
+	while (z_re * z_re + z_im * z_im <= 4 && iter < data->iteration)
 	{
 		z_re2 = z_re * z_re - z_im * z_im + c_re;
 		z_im2 = 2 * z_re * z_im + c_im;
@@ -32,6 +32,7 @@ int	ft_fractol_mandelbrot(double c_re, double c_im)
 		z_im = z_im2;
 		iter++;
 	}
+	printf("nb of iter : %d\r", data->iteration);
 	return (iter);
 }
 
@@ -53,10 +54,10 @@ void	graph_mandelbrot(t_img *img, t_data *data)
 				+ data->mouse_re;
 			c_im = (y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
 				+ data->mouse_im;
-			iter = ft_fractol_mandelbrot(c_re, c_im);
+			iter = ft_fractol_mandelbrot(c_re, c_im, data);
 			data->color = 0x000000;
-			if (iter < MAX_ITERATION)
-				data->color = 0x0000FF + (iter * 600 / MAX_ITERATION) * 256;
+			if (iter < data->iteration)
+				data->color = data->rgb + (iter * 1000 / data->iteration) * data->change_color;
 			img_pix_put(img, x, y, data->color);
 			x++;
 		}
@@ -74,11 +75,14 @@ int	render_mandelbrot(t_data *data)
 	return (0);
 }
 
-static int init_mandelbrot(t_data *data)
+int init_mandelbrot(t_data *data)
 {
 	data->zoom = 1.0;
 	data->mouse_re = 0.0;
 	data->mouse_im = 0.0;
+	data->change_color = 256;
+	data->iteration = 50;
+	data->rgb = 0x0000FF;
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);

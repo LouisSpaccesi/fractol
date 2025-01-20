@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 15:04:18 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/19 02:30:18 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ typedef struct s_data
 	double		mouse_re;
 	double		zoom;
 	int 		color;
+	int			iteration;
+	int			fractal_type;
+	int			change_color;
+	int			rgb;
 }	t_data;
 
 int		ft_zoom(int button, int x, int y, t_data *data);
@@ -60,6 +64,8 @@ int		handle_keypress(int keysym, t_data *data);
 int		handle_cross(t_data *data);
 int		julia(void);
 int		mandelbrot(void);
-
+int	render_mandelbrot(t_data *data);
+int init_mandelbrot(t_data *data);
+int	render_julia(t_data *data);
 
 #endif

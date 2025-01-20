@@ -5,7 +5,7 @@ SRCS := mandelbrot.c utils.c zoom.c julia.c main.c
 OBJS := $(SRCS:.c=.o)
 
 CC := cc 
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g
 
 MLX_DIR := minilibx-linux
 MLX_LIB := $(MLX_DIR)/libmlx_Linux.a

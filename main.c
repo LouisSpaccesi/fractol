@@ -3,36 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 15:15:17 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/18 22:17:09 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
+#include <string.h>
 
 int main(int argc, char **argv)
 {
-    int arg;
-    
-    arg = atoi(argv[1]);
-    if(argc == 2)
-    {
-        if(arg == 1)
-        {
-            mandelbrot();
-            return (0);
-        }
-        if(arg == 2)
-        {
-            julia();
-            return (0);
-        }
-        else
-            printf("Choose 1 for Mandelbrot or 2 for Julia");
-    }
+    t_data data;
+    (void)argc;
+
+    data.fractal_type = atoi(argv[1]);
+    // int arg;
+    // arg = atoi(argv[1]);
+
+    if(data.fractal_type == 1)
+        mandelbrot();
+    if(data.fractal_type == 2)
+        julia();
+    printf("%d", data.fractal_type);
     return (0);
 }
 
