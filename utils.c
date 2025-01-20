@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 23:45:06 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/19 12:58:52 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:49:54 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,14 @@ int	handle_keypress(int keysym, t_data *data)
 		data->change_color++;
 	if (keysym == XK_Right)
 		data->change_color--;
+	if(keysym == XK_w)
+		data->mouse_im -= 0.2 / data->zoom;
+	if(keysym == XK_a)
+		data->mouse_re -= 0.2 / data->zoom;
+	if(keysym == XK_d)
+		data->mouse_re += 0.2 / data->zoom;
+	if(keysym == XK_s)
+		data->mouse_im += 0.2 / data->zoom;
 	if(keysym == XK_space)
 	{
 		if (data->rgb == 0x0000FF)
