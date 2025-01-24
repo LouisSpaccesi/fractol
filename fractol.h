@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/19 02:30:18 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/21 00:25:13 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_data
 	int			fractal_type;
 	int			change_color;
 	int			rgb;
+	double 		julia_x;
+	double 		julia_y;
 }	t_data;
 
 int		ft_zoom(int button, int x, int y, t_data *data);

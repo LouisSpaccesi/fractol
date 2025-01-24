@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:02:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/19 13:00:17 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:23:43 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,10 @@ void	graph_julia(t_img *img, t_data *data)
 {
 	int		x;
 	int		y;
-	double	c_re;
-	double	c_im;
 	double	z_re;
 	double	z_im;
 	int		iter;
 
-	c_re = -0.4;
-	c_im = 0.6;
 	y = 0;
 	while (y < WINDOW_HEIGHT)
 	{
@@ -53,7 +49,7 @@ void	graph_julia(t_img *img, t_data *data)
 				+ data->mouse_re;
 			z_im = (y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
 				+ data->mouse_im;
-			iter = ft_fractol_julia(z_re, z_im, c_re, c_im, data);
+			iter = ft_fractol_julia(z_re, z_im, data->julia_x, data->julia_y, data);
 			data->color = 0x000000;
 			if (iter < data->iteration)
 				data->color = data->rgb + (iter * 1000 / data->iteration) * data->change_color;
@@ -83,6 +79,9 @@ static int init_julia(t_data *data)
 	data->iteration = 50;
 	data->change_color = 256;
 	data->rgb = 0x0000FF;
+	data->julia_x = -0.4;
+	data->julia_y = 0.6;
+	
 	if (data->mlx_ptr == NULL)
 		return (1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,

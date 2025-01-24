@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 23:45:06 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/20 16:49:54 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:38:01 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,20 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-int return_fractal(t_data *data)
-{
-	if (data->fractal_type == 1)
-	{
-		render_mandelbrot(data);
-		return (1);
-	}
-	if (data->fractal_type == 2)
-	{
-		render_julia(data);
-		return (1);
-	}
-	return (0);
-}
+// int return_fractal(t_data *data)
+// {
+// 	if (data->fractal_type == 1)
+// 	{
+// 		render_mandelbrot(data);
+// 		return (1);
+// 	}
+// 	if (data->fractal_type == 2)
+// 	{
+// 		render_julia(data);
+// 		return (1);
+// 	}
+// 	return (0);
+// }
 
 int	handle_keypress(int keysym, t_data *data)
 {
@@ -90,6 +90,41 @@ int	handle_keypress(int keysym, t_data *data)
 		data->change_color++;
 	if (keysym == XK_Right)
 		data->change_color--;
+	if(keysym == XK_Return)
+	{
+		data->mouse_re = 0.0;
+		data->mouse_im = 0.0;
+		data->zoom = 1.0;
+	}
+	if (keysym == XK_1)
+		mandelbrot();
+	if (keysym == XK_2)
+		julia();
+	if(keysym == XK_j)
+	{
+		data->julia_x = -0.4;
+		data->julia_y = 0.6;
+	}
+	if(keysym == XK_u)
+	{
+		data->julia_x = 0.34;
+		data->julia_y = -0.05;
+	}
+	if(keysym == XK_l)
+	{
+		data->julia_x = -0.122;
+		data->julia_y = 0.744;
+	}
+	if(keysym == XK_i)
+	{
+		data->julia_x = -0.8;
+		data->julia_y = 0.156;
+	}
+	if(keysym == XK_a)
+	{
+		data->julia_x = -1.2;
+		data->julia_y = 0.2;
+	}
 	if(keysym == XK_w)
 		data->mouse_im -= 0.2 / data->zoom;
 	if(keysym == XK_a)
@@ -109,7 +144,6 @@ int	handle_keypress(int keysym, t_data *data)
         else if (data->rgb == 0xFFFF00) 
             data->rgb = 0x0000FF;
 	}
-	return_fractal(data);
 	return (0);
 }
 
