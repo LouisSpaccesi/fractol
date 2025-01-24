@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:11:02 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/20 23:28:52 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:26:48 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,34 @@ int	ft_fractol_mandelbrot(double c_re, double c_im, t_data *data)
 		z_im = z_im2;
 		iter++;
 	}
-	printf("nb of iter : %d\r", data->iteration);
 	return (iter);
 }
 
 void	graph_mandelbrot(t_img *img, t_data *data)
 {
-	int		x;
-	int		y;
 	double	c_re;
 	double	c_im;
 	int		iter;
 
-	y = 0;
-	while (y < WINDOW_HEIGHT)
+	data->mandelbrot_y = 0;
+	while (data->mandelbrot_y < WINDOW_HEIGHT)
 	{
-		x = 0;
-		while (x < WINDOW_WIDTH)
+		data->mandelbrot_x = 0;
+		while (data->mandelbrot_x < WINDOW_WIDTH)
 		{
-			c_re = (x - WINDOW_WIDTH / 2.0) * 4.0 / WINDOW_WIDTH / data->zoom
+			c_re = (data->mandelbrot_x - WINDOW_WIDTH / 2.0) * 4.0 / WINDOW_WIDTH / data->zoom
 				+ data->mouse_re;
-			c_im = (y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
+			c_im = (data->mandelbrot_y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
 				+ data->mouse_im;
 			iter = ft_fractol_mandelbrot(c_re, c_im, data);
 			data->color = 0x000000;
 			if (iter < data->iteration)
-				data->color = data->rgb + (iter * 1000 / data->iteration) * data->change_color;
-			img_pix_put(img, x, y, data->color);
-			x++;
+				data->color = data->rgb + (iter * 1000 / data->iteration)
+					* data->change_color;
+			img_pix_put(img, data->mandelbrot_x, data->mandelbrot_y, data->color);
+			data->mandelbrot_x++;
 		}
-		y++;
+		data->mandelbrot_y++;
 	}
 }
 
@@ -75,7 +73,7 @@ int	render_mandelbrot(t_data *data)
 	return (0);
 }
 
-int init_mandelbrot(t_data *data)
+int	init_mandelbrot(t_data *data)
 {
 	data->zoom = 1.0;
 	data->mouse_re = 0.0;
@@ -83,17 +81,19 @@ int init_mandelbrot(t_data *data)
 	data->change_color = 256;
 	data->iteration = 50;
 	data->rgb = 0x0000FF;
+	data->mandelbrot_x = 0;
+	data->mandelbrot_y = 0;
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
 			"Mandelbrot");
 	if (data->win_ptr == NULL)
-    {
-        mlx_destroy_display(data->mlx_ptr);
-        free(data->mlx_ptr);
-        return (1);
-    }
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		return (1);
+	}
 	return (0);
 }
 
@@ -101,7 +101,7 @@ int	mandelbrot(void)
 {
 	t_data	data;
 
-	if(init_mandelbrot(&data))
+	if (init_mandelbrot(&data))
 		return (1);
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
