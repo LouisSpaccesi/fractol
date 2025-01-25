@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:26 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/17 00:03:13 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:40:02 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define buttonfront 4
-#define buttonback 5
+#define BUTTONFRONT 4
+#define BUTOONBACK 5
 
 int	ft_zoom(int button, int x, int y, t_data *data)
 {
@@ -30,13 +30,13 @@ int	ft_zoom(int button, int x, int y, t_data *data)
 		+ data->mouse_re;
 	zoom_im = (y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
 		+ data->mouse_im;
-	if (button == buttonfront)
+	if (button == BUTTONFRONT)
 	{
 		data->zoom *= 1.1;
 		data->mouse_re = zoom_re - (zoom_re - data->mouse_re) / 1.1;
 		data->mouse_im = zoom_im - (zoom_im - data->mouse_im) / 1.1;
 	}
-	else if (button == buttonback)
+	else if (button == BUTOONBACK)
 		data->zoom *= 0.9;
 	return (0);
 }

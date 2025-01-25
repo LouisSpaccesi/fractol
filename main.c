@@ -6,7 +6,7 @@
 /*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/24 17:22:28 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:38:59 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include <string.h>
 #include <unistd.h>
 
-void set_instruction()
+void	set_instruction(void)
 {
+	ft_printf("\n");
 	ft_printf("|| ----------------------------------------||\n|");
 	ft_printf("| Switch 1 or 2 for Mandelbrot or Julia   ||\n|");
 	ft_printf("| ----------------------------------------||\n|");
@@ -34,6 +35,7 @@ void set_instruction()
 	ft_printf("| ----------------------------------------||\n|");
 	ft_printf("| Use Enter to put in the center          ||\n");
 	ft_printf("|| ----------------------------------------||");
+	ft_printf("\n");
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/24 17:24:19 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:30:38 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,16 @@ typedef struct s_data
 	int		fractal_type;
 	int		change_color;
 	int		rgb;
+	double	julia_x_iter;
+	double	julia_y_iter;
 	double	julia_x;
 	double	julia_y;
 	double	mandelbrot_x;
 	double	mandelbrot_y;
+	double	c_re_julia;
+	double	c_im_julia;
 }			t_data;
-
+ 
 int			ft_zoom(int button, int x, int y, t_data *data);
 void		img_pix_put(t_img *img, int x, int y, int color);
 int			handle_keypress(int keysym, t_data *data);

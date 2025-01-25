@@ -6,7 +6,7 @@
 /*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:02:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/24 17:01:39 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:38:23 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,34 @@ int	ft_fractol_julia(double z_re, double z_im, double c_re, double c_im,
 
 void	graph_julia(t_img *img, t_data *data)
 {
-	int		x;
-	int		y;
 	double	z_re;
 	double	z_im;
 	int		iter;
 
-	y = 0;
-	while (y < WINDOW_HEIGHT)
+	data->julia_y = 0;
+	while (data->julia_y < WINDOW_HEIGHT)
 	{
-		x = 0;
-		while (x < WINDOW_WIDTH)
+		data->julia_x = 0;
+		while (data->julia_x < WINDOW_WIDTH)
 		{
-			z_re = (x - WINDOW_WIDTH / 2.0) * 4.0 / WINDOW_WIDTH / data->zoom
+			z_re = (data->julia_x - WINDOW_WIDTH / 2.0) * 4.0 / WINDOW_WIDTH / data->zoom
 				+ data->mouse_re;
-			z_im = (y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
+			z_im = (data->julia_y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
 				+ data->mouse_im;
-			iter = ft_fractol_julia(z_re, z_im, data->julia_x, data->julia_y,
+			iter = ft_fractol_julia(z_re, z_im, data->julia_x_iter, data->julia_y_iter,
 					data);
 			data->color = 0x000000;
 			if (iter < data->iteration)
 				data->color = data->rgb + (iter * 1000 / data->iteration)
 					* data->change_color;
-			img_pix_put(img, x, y, data->color);
-			x++;
+			img_pix_put(img, data->julia_x, data->julia_y, data->color);
+			data->julia_x++;
 		}
-		y++;
+		data->julia_y++;
 	}
+	printf("\nre = %f---\n", z_re);
+	printf("\n im = %f---\n", z_im);
+	printf("\nzoom = %f---\n", data->zoom);
 }
 
 int	render_julia(t_data *data)
@@ -81,8 +82,8 @@ static int	init_julia(t_data *data)
 	data->iteration = 50;
 	data->change_color = 256;
 	data->rgb = 0x0000FF;
-	data->julia_x = -0.4;
-	data->julia_y = 0.6;
+	data->julia_x_iter = -0.4;
+	data->julia_y_iter = 0.6;
 	if (data->mlx_ptr == NULL)
 		return (1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,

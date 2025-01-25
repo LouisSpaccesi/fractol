@@ -47,16 +47,17 @@ void	graph_mandelbrot(t_img *img, t_data *data)
 		data->mandelbrot_x = 0;
 		while (data->mandelbrot_x < WINDOW_WIDTH)
 		{
-			c_re = (data->mandelbrot_x - WINDOW_WIDTH / 2.0) * 4.0 / WINDOW_WIDTH / data->zoom
-				+ data->mouse_re;
-			c_im = (data->mandelbrot_y - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_HEIGHT / data->zoom
-				+ data->mouse_im;
+			c_re = (data->mandelbrot_x - WINDOW_WIDTH / 2.0) * 4.0
+				/ WINDOW_WIDTH / data->zoom + data->mouse_re;
+			c_im = (data->mandelbrot_y - WINDOW_HEIGHT / 2.0) * 4.0
+				/ WINDOW_HEIGHT / data->zoom + data->mouse_im;
 			iter = ft_fractol_mandelbrot(c_re, c_im, data);
 			data->color = 0x000000;
 			if (iter < data->iteration)
 				data->color = data->rgb + (iter * 1000 / data->iteration)
 					* data->change_color;
-			img_pix_put(img, data->mandelbrot_x, data->mandelbrot_y, data->color);
+			img_pix_put(img, data->mandelbrot_x, data->mandelbrot_y,
+				data->color);
 			data->mandelbrot_x++;
 		}
 		data->mandelbrot_y++;

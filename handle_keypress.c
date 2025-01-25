@@ -6,7 +6,7 @@
 /*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:19:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/24 17:22:01 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:54:48 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ void	handle_arrow(int keysym, t_data *data)
 		if (data->iteration > 0)
 			data->iteration--;
 	}
-   
 	if (keysym == XK_v)
-	    data->change_color++;
+		data->change_color++;
 	if (keysym == XK_c)
-	    data->change_color--;
+		data->change_color--;
 	if (keysym == XK_Return)
 	{
 		data->mouse_re = 0.0;
@@ -41,28 +40,28 @@ void	handle_julia(int keysym, t_data *data)
 {
 	if (keysym == XK_j)
 	{
-		data->julia_x = -0.4;
-		data->julia_y = 0.6;
+		data->julia_x_iter = -0.4;
+		data->julia_y_iter = 0.6;
 	}
 	if (keysym == XK_u)
 	{
-		data->julia_x = 0.34;
-		data->julia_y = -0.05;
+		data->julia_x_iter = 0.34;
+		data->julia_y_iter = -0.05;
 	}
 	if (keysym == XK_l)
 	{
-		data->julia_x = -0.122;
-		data->julia_y = 0.744;
+		data->julia_x_iter = -0.122;
+		data->julia_y_iter = 0.744;
 	}
 	if (keysym == XK_i)
 	{
-		data->julia_x = -0.8;
-		data->julia_y = 0.156;
+		data->julia_x_iter = -0.8;
+		data->julia_y_iter = 0.156;
 	}
 	if (keysym == XK_a)
 	{
-		data->julia_x = -1.2;
-		data->julia_y = 0.2;
+		data->julia_x_iter = -1.2;
+		data->julia_y_iter = 0.2;
 	}
 }
 
