@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/25 16:30:38 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:22:06 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/keysym.h>
 # include <stdio.h>
 # include <string.h>
+#include <math.h>
 
 # define WINDOW_WIDTH 720
 # define WINDOW_HEIGHT 520
@@ -29,6 +30,8 @@
 # define GREEN_PIXEL 0xFF00
 # define BLUE_PIXEL 0xFFFFFF
 # define MAX_ITERATION 50
+
+# define ABS(n) ((n) < 0 ? -(n) : (n))
 
 typedef struct s_img
 {
@@ -44,18 +47,18 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-	int		cur_img;
-	double	re_min;
-	double	re_max;
-	double	im_min;
-	double	im_max;
 	double	mouse_im;
 	double	mouse_re;
-	double	zoom;
+	double	position_mouse_im;
+	double	position_mouse_re;
+	double	position_im;
+	double	position_re;
+	double	position_zoom;
 	int		color;
 	int		iteration;
 	int		fractal_type;
 	int		change_color;
+	int		change_center_color;
 	int		rgb;
 	double	julia_x_iter;
 	double	julia_y_iter;
@@ -63,8 +66,15 @@ typedef struct s_data
 	double	julia_y;
 	double	mandelbrot_x;
 	double	mandelbrot_y;
+	double	man_c_re;
+	double	man_c_im;
+	double	burn_c_re;
+	double	burn_c_im;
+	double	burn_x;
+	double	burn_y;
 	double	c_re_julia;
 	double	c_im_julia;
+	double	zoom;
 }			t_data;
  
 int			ft_zoom(int button, int x, int y, t_data *data);
@@ -76,5 +86,8 @@ int			mandelbrot(void);
 int			render_mandelbrot(t_data *data);
 int			init_mandelbrot(t_data *data);
 int			render_julia(t_data *data);
+void		graph_julia(t_img *img, t_data *data);
+int			burningship(void);
+
 
 #endif

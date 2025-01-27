@@ -2,7 +2,7 @@ NAME := fractol
 
 PRINTF := libftprintf.a
 
-SRCS := mandelbrot.c utils.c zoom.c julia.c main.c handle_keypress.c
+SRCS := $(wildcard *.c)
 
 OBJS := $(SRCS:.c=.o)
 

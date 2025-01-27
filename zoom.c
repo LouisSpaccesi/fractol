@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:26 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/25 14:40:02 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/26 00:08:58 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,5 @@ int	ft_zoom(int button, int x, int y, t_data *data)
 		data->zoom *= 0.9;
 	return (0);
 }
+
+
