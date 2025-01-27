@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keypress.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:19:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/26 19:15:46 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:53:45 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../fractol.h"
 
 void	handle_arrow(int keysym, t_data *data)
 {
@@ -29,35 +29,6 @@ void	handle_arrow(int keysym, t_data *data)
 		data->mouse_re = 0.0;
 		data->mouse_im = 0.0;
 		data->zoom = 1.0;
-	}
-}
-
-void	handle_julia(int keysym, t_data *data)
-{
-	if (keysym == XK_j)
-	{
-		data->julia_x_iter = -0.4;
-		data->julia_y_iter = 0.6;
-	}
-	if (keysym == XK_u)
-	{
-		data->julia_x_iter = 0.34;
-		data->julia_y_iter = -0.05;
-	}
-	if (keysym == XK_l)
-	{
-		data->julia_x_iter = -0.122;
-		data->julia_y_iter = 0.744;
-	}
-	if (keysym == XK_i)
-	{
-		data->julia_x_iter = -0.8;
-		data->julia_y_iter = 0.156;
-	}
-	if (keysym == XK_a)
-	{
-		data->julia_x_iter = -1.2;
-		data->julia_y_iter = 0.2;
 	}
 }
 
@@ -82,18 +53,6 @@ void	handle_color(int keysym, t_data *data)
 		data->change_center_color = (data->iteration * 123) % 0xFFFFFF;
 }
 
-void	handle_direction(int keysym, t_data *data)
-{
-	if (keysym == XK_Up)
-		data->mouse_im -= 0.2 / data->zoom;
-	if (keysym == XK_Left)
-		data->mouse_re -= 0.2 / data->zoom;
-	if (keysym == XK_Right)
-		data->mouse_re += 0.2 / data->zoom;
-	if (keysym == XK_Down)
-		data->mouse_im += 0.2 / data->zoom;
-}
-
 void return_before_position(int keysym, t_data *data)
 {
 	if(keysym == XK_s)
@@ -115,8 +74,7 @@ void return_before_position(int keysym, t_data *data)
 	}
 }
 
-
-int	handle_keypress(int keysym, t_data *data)
+void handle_windows(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 	{
@@ -139,9 +97,14 @@ int	handle_keypress(int keysym, t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		burningship();
 	}
+}
+
+int	handle_keypress(int keysym, t_data *data, t_julia *julia)
+{
+	handle_windows(keysym, data);
 	return_before_position(keysym, data);
 	handle_arrow(keysym, data);
-	handle_julia(keysym, data);
+	handle_julia(keysym, julia);
 	handle_color(keysym, data);
 	handle_direction(keysym, data);
 	return (0);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:02:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/26 19:18:54 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:58:45 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../fractol.h"
 
 int	ft_fractol_julia(double z_re, double z_im, t_data *data)
 {

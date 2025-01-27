@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:39:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/27 12:33:57 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:08:21 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../fractol.h"
 
 int	ft_fractol_burningship(double c_re, double c_im, t_data *data)
 {

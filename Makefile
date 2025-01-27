@@ -2,7 +2,9 @@ NAME := fractol
 
 PRINTF := libftprintf.a
 
-SRCS := $(wildcard *.c)
+SRCS := $(wildcard *.c) \
+		$(wildcard fractal/*.c) \
+		$(wildcard keypress/*.c)
 
 OBJS := $(SRCS:.c=.o)
 
