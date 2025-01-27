@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/27 16:58:12 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:09:56 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int			init_mandelbrot(t_data *data);
 int			render_julia(t_data *data);
 void		graph_julia(t_img *img, t_data *data);
 int			burningship(void);
+void	handle_julia(int keysym, t_data *data);
+void	handle_direction(int keysym, t_data *data);
 
 
 #endif

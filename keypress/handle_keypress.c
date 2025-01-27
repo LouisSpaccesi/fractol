@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keypress.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:19:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/27 16:53:45 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:01:35 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ void handle_windows(int keysym, t_data *data)
 	}
 }
 
-int	handle_keypress(int keysym, t_data *data, t_julia *julia)
+int	handle_keypress(int keysym, t_data *data)
 {
 	handle_windows(keysym, data);
 	return_before_position(keysym, data);
 	handle_arrow(keysym, data);
-	handle_julia(keysym, julia);
+	handle_julia(keysym, data);
 	handle_color(keysym, data);
 	handle_direction(keysym, data);
 	return (0);
