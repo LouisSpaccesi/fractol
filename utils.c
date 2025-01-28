@@ -3,43 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 23:45:06 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/24 13:19:35 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/29 00:16:56 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	ft_isspace(char c)
+double	ft_atof(char *nptr)
 {
-	return ((c >= 9 && c <= 13) || c == ' ');
+	int		i;
+	double	number;
+
+	i = 0;
+	number = ft_atoi(nptr);
+	while (nptr[i] && nptr[i] != '.')
+		i++;
+	if (!nptr[i])
+		return ((double)number);
+	i = ft_strlen(nptr) - i - 1;
+	return (number / pow(10, i));
 }
 
-int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	result;
+	int		i;
+	int		sign;
+	double	result;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	while (ft_isspace(*nptr))
-		nptr++;
 	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign *= -1;
+		return (0);
+	while ((nptr[i] >= '0' && nptr[i] <= '9') || nptr[i] == '.')
+	{	
+		if (nptr[i] != '.')
+			result = (result * 10) + (nptr[i] - 48);
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = (result * 10) + (nptr[i] - 48);
-		i++;
-	}
-	i++;
 	return (result * sign);
 }
 
@@ -53,13 +57,22 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-int	handle_cross(t_data *data)
+void	destroy_window(t_data *data)
 {
+	if (data->img.mlx_img != NULL)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+		data->img.mlx_img = NULL;
+	}
 	if (data->win_ptr != NULL)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
-		exit(0);
 	}
-	return (0);
+}
+
+int	color_ticks(t_data *data)
+{
+	return ((ticksrandom(data, 0, 255, 23) << 16) | (ticksrandom(data, 0, 255,
+				314) << 8) | ticksrandom(data, 0, 255, 756));
 }

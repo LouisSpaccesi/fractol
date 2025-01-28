@@ -4,7 +4,9 @@ PRINTF := libftprintf.a
 
 SRCS := $(wildcard *.c) \
 		$(wildcard fractal/*.c) \
-		$(wildcard keypress/*.c)
+		$(wildcard keypress/*.c) \
+		$(wildcard init/*.c)
+
 
 OBJS := $(SRCS:.c=.o)
 
