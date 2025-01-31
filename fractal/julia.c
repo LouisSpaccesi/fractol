@@ -6,13 +6,13 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:02:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/28 15:46:54 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/31 23:25:45 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int	ft_fractol_julia(double z_re, double z_im, t_data *data, t_julia *julia)
+static int	ft_fractol_julia(double z_re, double z_im, t_data *data, t_julia *julia)
 {
 	double	z_re2;
 	double	z_im2;

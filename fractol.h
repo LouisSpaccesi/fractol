@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/28 23:57:48 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/31 23:29:07 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,10 @@
 # include <math.h>
 # define BUTTONFRONT 4
 # define BUTOONBACK 5
+# define BUTOONLEFT 1
 
 # define WINDOW_WIDTH 720
 # define WINDOW_HEIGHT 520
-
-# define MLX_ERROR 1
-
-# define RED_PIXEL 0xFF0000
-# define GREEN_PIXEL 0xFF00
-# define BLUE_PIXEL 0xFFFFFF
-# define MAX_ITERATION 50
-
-# define ABS(n) ((n) < 0 ? -(n) : (n))
 
 typedef struct s_img
 {
@@ -81,23 +73,28 @@ typedef struct s_data
 	double			position_mouse_im;
 	double			position_mouse_re;
 	double			position_zoom;
+	double			zoom;
 	int				color;
 	int				iteration;
 	int				fractal_type;
 	int				change_color;
 	int				change_center_color;
 	int				rgb;
-	double			zoom;
+	int				mouse_pressed;
 }					t_data;
 
 // keypress
-int					handle_keypress(int keysym, t_data *data);
+int					handle_keypress(int keysym, t_data *data, int argc);
 int					handle_cross(t_data *data);
 void				handle_arrow(int keysym, t_data *data);
 void				handle_julia(int keysym, t_julia *julia);
-int					ft_zoom(int button, int x, int y, t_data *data);
 void				handle_direction(int keysym, t_data *data);
 void				return_before_position(int keysym, t_data *data);
+
+// mousepress
+int					ft_mouse_move(int x, int y, t_data *data);
+int					ft_mouse_release(int button, int x, int y, t_data *data);
+int					ft_zoom(int button, int x, int y, t_data *data);
 
 // color
 void				img_pix_put(t_img *img, int x, int y, int color);
@@ -111,10 +108,10 @@ void				destroy_window(t_data *data);
 
 // init
 void				free_window(t_data *data);
-int					init_fractal(t_data *data);
+int					init_fractal(t_data *data, int argc);
 
 // fractal
-int					render_fractal(t_data *data);
+int					render_fractal(t_data *data, int argc);
 void				graph_burningship(t_img *img, t_data *data, t_burn *burn);
 void				graph_julia(t_img *img, t_data *data, t_julia *julia);
 void				graph_mandelbrot(t_img *img, t_data *data, t_mand *mand);

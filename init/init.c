@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:25:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/28 23:50:18 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/31 22:35:27 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	handle_error(t_data *data)
 	return (0);
 }
 
-static int	setup_fractal(t_data *data)
+static int	setup_fractal(t_data *data, int argc)
 {
 	data->zoom = 1.0;
 	data->mouse_re = 0.0;
@@ -41,8 +41,9 @@ static int	setup_fractal(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (1);
-	if (data->fractal_type == 2)
+	if (data->fractal_type == 2 && argc == 2)
 	{
+		data->mouse_pressed = 0;
 		data->julia.julia_x_iter = -0.4;
 		data->julia.julia_y_iter = 0.6;
 	}
@@ -55,9 +56,10 @@ static int	setup_fractal(t_data *data)
 	return (0);
 }
 
-int	init_fractal(t_data *data)
+int	init_fractal(t_data *data, int argc)
 {
-	if (setup_fractal(data))
+	(void)argc;
+	if (setup_fractal(data, argc))
 		return (1);
 	if (data->fractal_type == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:19:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/28 23:50:00 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/31 23:26:36 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ticksrandom(t_data *data, int min, int max, int iter)
 	return (min + (seed % (max - min - 1)));
 }
 
-void	handle_color(int keysym, t_data *data)
+static void	handle_color(int keysym, t_data *data)
 {
 	if (keysym == XK_space)
 		data->rgb = color_ticks(data);
@@ -40,8 +40,9 @@ void	handle_color(int keysym, t_data *data)
 		data->change_center_color = color_ticks(data);
 }
 
-void	handle_windows(int keysym, t_data *data)
+static void	handle_windows(int keysym, t_data *data, int argc)
 {
+	(void)argc;
 	if (keysym == XK_Escape)
 	{
 		free_window(data);
@@ -64,13 +65,14 @@ void	handle_windows(int keysym, t_data *data)
 			free_window(data);
 			data->fractal_type = 3;
 		}
-		render_fractal(data);
+		render_fractal(data, argc);
 	}
 }
 
-int	handle_keypress(int keysym, t_data *data)
+int	handle_keypress(int keysym, t_data *data, int argc)
 {
-	handle_windows(keysym, data);
+	(void)argc;
+	handle_windows(keysym, data, argc);
 	return_before_position(keysym, data);
 	handle_arrow(keysym, data);
 	handle_julia(keysym, &data->julia);

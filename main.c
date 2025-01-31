@@ -6,16 +6,13 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/29 00:33:37 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/31 23:28:08 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
 
-void	set_instruction(void)
+static void	set_instruction(void)
 {
 	ft_printf("\n");
 	ft_printf("|| --------------------------------------------- ||\n|");
@@ -42,7 +39,7 @@ void	set_instruction(void)
 	ft_printf("\n");
 }
 
-int	put_image(t_data *data)
+static int	put_image(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
@@ -58,18 +55,22 @@ int	put_image(t_data *data)
 	return (0);
 }
 
-int	render_fractal(t_data *data)
+int	render_fractal(t_data *data, int argc)
 {
 	if ((data->fractal_type == 1 || data->fractal_type == 2
-			|| data->fractal_type == 3) && init_fractal(data))
+			|| data->fractal_type == 3) && init_fractal(data, argc))
 		return (1);
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH,
 			WINDOW_HEIGHT);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 			&data->img.line_len, &data->img.endian);
-	mlx_hook(data->win_ptr, 17, 0, &handle_cross, data);
-	mlx_mouse_hook(data->win_ptr, ft_zoom, data);
+	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, &handle_cross, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win_ptr, ButtonPress, ButtonPressMask, &ft_zoom, data);
+	mlx_hook(data->win_ptr, ButtonRelease, ButtonReleaseMask, &ft_mouse_release,
+		data);
+	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, &ft_mouse_move,
+		data);
 	if (data->fractal_type == 1 || data->fractal_type == 2
 		|| data->fractal_type == 3)
 		mlx_loop_hook(data->mlx_ptr, &put_image, data);
@@ -80,9 +81,9 @@ int	render_fractal(t_data *data)
 	return (0);
 }
 
-int	julia_parameter(int argc, char **argv, t_data *data)
+static int	julia_parameter(int argc, char **argv, t_data *data)
 {
-	if (argc >= 4)
+	if (argc == 4)
 	{
 		data->julia.julia_x_iter = ft_atof(argv[2]);
 		data->julia.julia_y_iter = ft_atof(argv[3]);
@@ -103,8 +104,8 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		return ((ft_printf("\n\033[1;91mChoose 1 for Mandelbrot, "
-					"2 for Julia or 3 for burningship 💫\n\033[0m\n")));
+		return (((ft_printf("\n\033[1);91mChoose 1 for Mandelbrot, "
+							"2 for Julia or 3 for burningship 💫\n\033[0m\n"))));
 	}
 	nb = ft_atoi(argv[1]);
 	if (nb != 1 && nb != 2 && nb != 3)
@@ -113,11 +114,10 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	data.fractal_type = ft_atoi(argv[1]);
-	data.ticks = 0;
 	if (data.fractal_type == 2 && !(julia_parameter(argc, argv, &data)))
 		return (1);
 	set_instruction();
-	if (render_fractal(&data))
+	if (render_fractal(&data, argc))
 		return (1);
 	return (0);
 }

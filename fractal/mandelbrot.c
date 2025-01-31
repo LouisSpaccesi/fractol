@@ -6,13 +6,13 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:11:02 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/28 15:47:04 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/31 23:25:54 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int	ft_fractol_mandelbrot(double c_re, double c_im, t_data *data)
+static int	ft_fractol_mandelbrot(double c_re, double c_im, t_data *data)
 {
 	double	z_re;
 	double	z_im;

@@ -6,13 +6,20 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:39:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/28 15:47:11 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/01/31 23:25:37 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int	ft_fractol_burningship(double c_re, double c_im, t_data *data)
+static double ABS(double n)
+{
+    if (n < 0)
+        return -n;
+    return n;
+}
+
+static int	ft_fractol_burningship(double c_re, double c_im, t_data *data)
 {
 	double	z_re;
 	double	z_im;
