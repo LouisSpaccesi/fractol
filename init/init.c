@@ -6,7 +6,7 @@
 /*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:25:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/02/06 15:56:49 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:29:15 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	ft_isalpha(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
+	if(str[i] == '-' || str[i] == '+')
 		i++;
-	while (str[i])
+	while(str[i])
 	{
 		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '.'))
 			return (1);
-		i++;
+	i++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/02/06 16:04:10 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:48:39 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ static int	julia_parameter(int argc, char **argv, t_data *data)
 {
 	if (argc == 4)
 	{
+		if(argv[2][0] == '-' && argv[3][0] == '-')
+		{
+			data->julia.julia_x_iter *= -1;
+			data->julia.julia_x_iter *= -1;
+		}
 		data->julia.julia_x_iter = ft_atof(argv[2]);
 		data->julia.julia_y_iter = ft_atof(argv[3]);
 		if ((data->julia.julia_x_iter > 3 || data->julia.julia_x_iter < -3)
