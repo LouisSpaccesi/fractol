@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/31 23:28:08 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:49:28 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ int	render_fractal(t_data *data, int argc)
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, &handle_cross, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, ButtonPress, ButtonPressMask, &ft_zoom, data);
-	mlx_hook(data->win_ptr, ButtonRelease, ButtonReleaseMask, &ft_mouse_release,
-		data);
-	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, &ft_mouse_move,
-		data);
 	if (data->fractal_type == 1 || data->fractal_type == 2
 		|| data->fractal_type == 3)
 		mlx_loop_hook(data->mlx_ptr, &put_image, data);

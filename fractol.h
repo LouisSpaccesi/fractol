@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/31 23:29:07 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:50:02 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,7 @@ void				handle_julia(int keysym, t_julia *julia);
 void				handle_direction(int keysym, t_data *data);
 void				return_before_position(int keysym, t_data *data);
 
-// mousepress
-int					ft_mouse_move(int x, int y, t_data *data);
-int					ft_mouse_release(int button, int x, int y, t_data *data);
+// zoom
 int					ft_zoom(int button, int x, int y, t_data *data);
 
 // color
