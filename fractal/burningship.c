@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:39:33 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/31 23:25:37 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:03:20 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static double ABS(double n)
+static double	ft_abs(double n)
 {
-    if (n < 0)
-        return -n;
-    return n;
+	if (n < 0)
+		return (n * -1);
+	return (n);
 }
 
 static int	ft_fractol_burningship(double c_re, double c_im, t_data *data)
@@ -33,7 +33,7 @@ static int	ft_fractol_burningship(double c_re, double c_im, t_data *data)
 	while (z_re * z_re + z_im * z_im <= 4 && iter < data->iteration)
 	{
 		z_re2 = z_re * z_re - z_im * z_im + c_re;
-		z_im2 = ABS(2 * z_re * z_im) + c_im;
+		z_im2 = ft_abs(2 * z_re * z_im) + c_im;
 		z_re = z_re2;
 		z_im = z_im2;
 		iter++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/02/06 12:49:28 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:04:10 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ static int	julia_parameter(int argc, char **argv, t_data *data)
 		data->julia.julia_x_iter = ft_atof(argv[2]);
 		data->julia.julia_y_iter = ft_atof(argv[3]);
 		if ((data->julia.julia_x_iter > 3 || data->julia.julia_x_iter < -3)
-			|| (data->julia.julia_y_iter > 3 || data->julia.julia_y_iter < -3))
+			|| (data->julia.julia_y_iter > 3 || data->julia.julia_y_iter < -3)
+			|| ((ft_isalpha(argv[2])) || (ft_isalpha(argv[3]))))
 		{
 			ft_printf("\n\033[1;91m Invalid parameter ❌\n\033[0m\n");
 			return (0);
@@ -98,17 +99,18 @@ int	main(int argc, char **argv)
 	t_data	data;
 	int		nb;
 
-	if (argc < 2)
+	if (argc < 2 || argc > 4)
 	{
-		return (((ft_printf("\n\033[1);91mChoose 1 for Mandelbrot, "
-							"2 for Julia or 3 for burningship 💫\n\033[0m\n"))));
+		return ((ft_printf("\n\033[1);91mChoose 1 for Mandelbrot, "
+					"2 for Julia or 3 for burningship 💫\n\033[0m\n")));
 	}
+	if (argv[1][0] == '.')
+		return (ft_printf("\n\033[1;91mChoose a valid number ❌\n\033[0m\n"));
+	if ((argv[1][0] != '2' && argv[2]))
+		return (ft_printf("\n\033[1;91mChoose a valid number ❌\n\033[0m\n"));
 	nb = ft_atoi(argv[1]);
 	if (nb != 1 && nb != 2 && nb != 3)
-	{
-		ft_printf("\n\033[1;91mChoose a valid number ❌\n\033[0m\n");
-		return (0);
-	}
+		return (ft_printf("\n\033[1;91mChoose a valid number ❌\n\033[0m\n"));
 	data.fractal_type = ft_atoi(argv[1]);
 	if (data.fractal_type == 2 && !(julia_parameter(argc, argv, &data)))
 		return (1);

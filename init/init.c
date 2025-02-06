@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:25:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/31 22:35:27 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:56:49 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
+
+int	ft_isalpha(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '.'))
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	free_window(t_data *data)
 {
@@ -43,7 +59,6 @@ static int	setup_fractal(t_data *data, int argc)
 		return (1);
 	if (data->fractal_type == 2 && argc == 2)
 	{
-		data->mouse_pressed = 0;
 		data->julia.julia_x_iter = -0.4;
 		data->julia.julia_y_iter = 0.6;
 	}

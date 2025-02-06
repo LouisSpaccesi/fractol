@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 23:45:06 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/30 18:59:04 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:57:20 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ long long	ft_atoi(const char *nptr)
 	i = 0;
 	sign = 1;
 	result = 0;
-	while(nptr[i])
+	while (nptr[i])
 	{
-		if(!((nptr[i] >= '0' && nptr[i] <= '9') || nptr[i] == '.'))
-			return 0;
+		if (!((nptr[i] >= '0' && nptr[i] <= '9') || nptr[i] == '.'))
+			return (0);
 		i++;
 	}
 	i = 0;
 	while ((nptr[i] >= '0' && nptr[i] <= '9') || nptr[i] == '.')
-	{	
+	{
 		if (nptr[i] != '.')
 			result = (result * 10) + (nptr[i] - 48);
 		i++;

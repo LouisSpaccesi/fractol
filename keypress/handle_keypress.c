@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keypress.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:19:08 by lospacce          #+#    #+#             */
-/*   Updated: 2025/01/31 23:26:36 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:37:44 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ static void	handle_color(int keysym, t_data *data)
 static void	handle_windows(int keysym, t_data *data, int argc)
 {
 	(void)argc;
-	if (keysym == XK_Escape)
-	{
-		free_window(data);
-		exit(0);
-	}
 	if (keysym == XK_1 || keysym == XK_2 || keysym == XK_3)
 	{
 		if (keysym == XK_1)
@@ -58,6 +53,8 @@ static void	handle_windows(int keysym, t_data *data, int argc)
 		if (keysym == XK_2)
 		{
 			free_window(data);
+			data->julia.julia_x_iter = -0.4;
+			data->julia.julia_y_iter = 0.6;
 			data->fractal_type = 2;
 		}
 		if (keysym == XK_3)
@@ -72,6 +69,11 @@ static void	handle_windows(int keysym, t_data *data, int argc)
 int	handle_keypress(int keysym, t_data *data, int argc)
 {
 	(void)argc;
+	if (keysym == XK_Escape)
+	{
+		free_window(data);
+		exit(0);
+	}
 	handle_windows(keysym, data, argc);
 	return_before_position(keysym, data);
 	handle_arrow(keysym, data);

@@ -12,7 +12,8 @@
 
 #include "../fractol.h"
 
-static int	ft_fractol_julia(double z_re, double z_im, t_data *data, t_julia *julia)
+static int	ft_fractol_julia(double z_re, double z_im, t_data *data,
+		t_julia *julia)
 {
 	double	z_re2;
 	double	z_im2;

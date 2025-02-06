@@ -2,17 +2,17 @@ NAME := fractol
 
 PRINTF := libftprintf.a
 
-SRCS := main.c \
-		fractal/burningship.c \
-		fractal/julia.c \
-		fractal/mandelbrot.c \
-		keypress/handle_fractal.c \
-		keypress/handle_keypress.c \
-		init/init.c \
-		utils.c \
-		zoom.c \
+###▼▼▼<src-updater-do-not-edit-or-remove>▼▼▼
+# **************************************************************************** #
+# **   Generated with https://github.com/lorenuars19/makefile-src-updater   ** #
+# **************************************************************************** #
 
+SRCS = 
 
+HEADERS = 
+
+###▲▲▲<src-updater-do-not-edit-or-remove>▲▲▲
+		
 
 
 OBJS := $(SRCS:.c=.o)

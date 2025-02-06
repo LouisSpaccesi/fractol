@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
+/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:14:23 by lospacce          #+#    #+#             */
-/*   Updated: 2025/02/06 12:50:02 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:18:27 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void				destroy_window(t_data *data);
 // init
 void				free_window(t_data *data);
 int					init_fractal(t_data *data, int argc);
+int					ft_isalpha(char *str);
 
 // fractal
 int					render_fractal(t_data *data, int argc);
