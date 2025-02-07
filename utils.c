@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 23:45:06 by lospacce          #+#    #+#             */
-/*   Updated: 2025/02/06 15:57:20 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:49:03 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,23 @@ double	ft_atof(char *nptr)
 {
 	int		i;
 	double	number;
+	int		sign;
 
+	sign = 1;
 	i = 0;
-	number = ft_atoi(nptr);
+	if (nptr[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	number = ft_atoi(nptr + i);
+	i = 0;
 	while (nptr[i] && nptr[i] != '.')
 		i++;
 	if (!nptr[i])
-		return ((double)number);
+		return (sign * (double)number);
 	i = ft_strlen(nptr) - i - 1;
-	return (number / pow(10, i));
+	return (sign * (number / pow(10, i)));
 }
 
 long long	ft_atoi(const char *nptr)

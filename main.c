@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lospacce <lospacce@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/02/06 16:48:39 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:49:16 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,6 @@ static int	julia_parameter(int argc, char **argv, t_data *data)
 {
 	if (argc == 4)
 	{
-		if(argv[2][0] == '-' && argv[3][0] == '-')
-		{
-			data->julia.julia_x_iter *= -1;
-			data->julia.julia_x_iter *= -1;
-		}
 		data->julia.julia_x_iter = ft_atof(argv[2]);
 		data->julia.julia_y_iter = ft_atof(argv[3]);
 		if ((data->julia.julia_x_iter > 3 || data->julia.julia_x_iter < -3)
@@ -95,6 +90,11 @@ static int	julia_parameter(int argc, char **argv, t_data *data)
 			ft_printf("\n\033[1;91m Invalid parameter ❌\n\033[0m\n");
 			return (0);
 		}
+	}
+	else
+	{
+		ft_printf("\n\033[1;91mInvalid parameter ❌\n\033[0m\n");
+		return (0);
 	}
 	return (1);
 }
