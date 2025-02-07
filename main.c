@@ -6,7 +6,7 @@
 /*   By: lospacce < lospacce@student.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:55:00 by lospacce          #+#    #+#             */
-/*   Updated: 2025/02/07 12:49:16 by lospacce         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:03:28 by lospacce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	julia_parameter(int argc, char **argv, t_data *data)
 			return (0);
 		}
 	}
-	else
+	else if (argv[1][0] == '2' && argc == 3)
 	{
 		ft_printf("\n\033[1;91mInvalid parameter ❌\n\033[0m\n");
 		return (0);
